@@ -1,0 +1,402 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Ensure the body and html take up the full viewport height */
+    margin: 0; /* Remove default margins */ /* Use flexbox layout */
+}
+
+html {
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background: #eee;
+    background-color: #ffffff;
+}
+
+.main {
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.wrap {
+    display: flex;
+}
+
+.icon{
+    height: 23px;
+    width: 23px;
+    margin: 10px 5px 5px;
+    background-image: url(./imgs/notes.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: invert(100%) sepia(200%) saturate(0%) brightness(500%);
+}
+
+header {
+    background-color: #f5ba13;
+    margin: auto 0 -16px;
+    padding: 16px 32px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    color: #fff;
+    font-family: "McLaren", cursive;
+    font-weight: 200;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin: 15px 0;
+}
+
+footer p {
+    color: #868686;
+    font-size: small;
+}
+
+.a-link {
+    color: #868686;
+    text-decoration: none;
+}
+
+.a-link:hover{
+    text-decoration: underline;
+}
+
+.notesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex: 1;
+    /* min-height: 500px; */
+    /* gap: 16px; */
+    /* padding: 20px; */
+}
+
+.note {
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 265px;
+    height: 170px;
+    margin: 11px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.note h1 {
+    font-size: 1.2em;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    /* overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.note p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* flex-grow: 1; */
+    /* word-wrap: break-word; */
+}
+
+.note .btn-more {
+    background-color: transparent;
+    position: relative;
+    float: right;
+    color: #f5ba13;
+    border: 1px solid #f5ba13;
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    transition: background-color .6s ease, transform .6s;
+}
+
+.note .btn-more:hover {
+    background-color: #f5ba13;
+    position: relative;
+    float: right;
+    color: #ffffff;
+    border: 1px solid #f5ba13;
+    width: 75px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+
+
+.note .btn-delete {
+    position: relative;
+    float: right;
+    color: #f5ba13;
+    background-color: transparent;
+    border: none;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    transition: color .6s ease, transform .6s;
+}
+
+.note .btn-delete:hover {
+    position: relative;
+    float: right;
+    color: #f5b91384;
+    background-color: transparent;
+}
+
+
+
+.buttonsContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+form {
+    position: relative;
+    width: 480px;
+    margin: 30px auto 20px auto;
+    background: transparent;
+    padding: 15px;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+form input,
+form textarea {
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
+}
+
+form button {
+    position: absolute;
+    right: 18px;
+    bottom: -18px;
+    background: #f5ba13;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    outline: none;
+}
+
+/* More styles */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    min-width: 450px;
+}
+
+.modal h1 {
+    margin-bottom: 15px;
+}
+
+.modal h2 {
+    margin: 10px 0 10px;
+    font-size: small;
+    color: #868686;
+}
+
+.modal-content {
+    margin: 20px 0;
+}
+
+.modal-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: #f5ba13;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.modal .btn-container {
+    display: flex;
+    justify-content: end;
+    margin-top: 15px;
+}
+
+.modal .btn-container button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 10px;
+    background-color: transparent;
+    position: relative;
+    float: right;
+    color: #f5ba13;
+    border: 1px solid #f5ba13;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+    transition: background-color .6s ease, transform .6s;
+    font-size: small;
+}
+
+
+.modal .btn-container button:hover {
+    background-color: #f5ba13;
+    position: relative;
+    float: right;
+    color: #ffffff;
+    border: 1px solid #f5ba13;
+    width: 90px;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 5px;
+}
+
+.modal .edit{
+    width: 100%;
+}
+
+.modal .edit input,
+.modal .edit textarea {
+    width: 100%;
+    border: none;
+    padding: 4px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: inherit;
+    resize: none;
+}
+
+.modal .edit textarea {
+    height: 90px;   
+
+}
+
+/* Blur background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+@media (max-width: 390px) {
+
+    header {
+        padding: 16px 15px ;
+    }
+
+    header h1 {
+        font-size: 28px;
+        line-height: 45px;
+
+    }
+
+    form {
+        width: 90%;
+        margin: 30px auto 20px auto;
+        padding: 15px;
+    }
+
+    .note {
+        width: 90%;
+        margin: 20px;
+        padding: 16px;
+    }
+
+    .modal {
+        min-width: 90%;
+    }
+
+}
+
+
+/* Dark Mode */
+
+.dark-mode{
+    background-color: #121212;
+    color: #ffffff;
+}
+.dark-mode .note {
+    background-color:#2a2a2a;
+    box-shadow: none;
+    color: #ffffff;
+}
+
+.dark-mode form {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.dark-mode footer {
+    color: #ffffff;
+}
+
+.dark-mode .modal {
+    background-color:#2a2a2a;
+}
+
+.dark-mode form, .dark-mode textarea, .dark-mode input {
+    background-color: #2a2a2a;
+    color: #ffffff; 
+    border: none; 
+}
+
+.dark-mode-toggle {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 33px;
+    z-index: 1000;
+    color: #fff;
+}
