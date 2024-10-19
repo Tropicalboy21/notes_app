@@ -4,7 +4,7 @@ function Footer() {
     const currentYear = new Date().getFullYear();
     return (
         <footer>
-            <p><a className='a-link' href='https://tropicalboy21.github.io/portafolio/portafolio.html'>Lenin Ugalde</a> | Copyright ⓒ {currentYear}</p>
+            <p><a className='a-link' href='https://lenin-ugalde-portafolio.web.app/'>Lenin Ugalde</a> | Copyright ⓒ {currentYear}</p>
         </footer>
     );
 }
